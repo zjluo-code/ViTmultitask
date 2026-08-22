@@ -11,14 +11,23 @@ ViTMultiTask is a deep learning framework designed to simultaneously estimate hi
 2.	Repository Structure
 
 ├── hsc_mmd_256bs.py          # Main script for ViTMultiTask model training and evaluation
+
 ├── plot_scatter.py           # Plotting script: physical parameter scatter & residual evaluation
+
 ├── plot_1D_kde.py            # Plotting script: 1D KDE density distribution comparison
+
 ├── plot_2D_kde.py            # Plotting script: 2D KDE contour overlays on the Dn4000-HdeltaA manifold
+
 ├── mmd_pred_256bs.dat        # Model predictions on the test set (ViTMultiTask with MMD)
+
 ├── nommd_pred_256bs.dat      # Baseline predictions on the test set (ViTMultiTask without MMD)
+
 ├── vit_multitask_arch.png    # Model architecture diagram
+
 ├── desi_hsc_mmd_256bs/       # Pre-trained checkpoint directory for ViTMultiTask (with MMD)
+
 ├── desi_hsc_nommd_256bs/     # Pre-trained checkpoint directory for baseline ViTMultiTask (without MMD)
+
 └── README.md                 # Documentation
 
 3.	Environment Setup
