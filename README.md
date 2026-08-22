@@ -33,11 +33,13 @@ ViTMultiTask is a deep learning framework designed to simultaneously estimate hi
 3.	Environment Setup
 
 Ensure you have Python 3.8+ and standard scientific/deep learning packages installed:
+
 pip install tensorflow numpy scipy matplotlib seaborn scikit-learn
 
 4.	Usage
 
 1） Training & Inference
+
 To train the ViTMultiTask network or run inference on the HSC test set:
 
 python hsc_mmd_256bs.py
@@ -47,21 +49,27 @@ Pre-trained weights are automatically loaded from desi_hsc_mmd_256bs/ and desi_h
 The evaluation outputs prediction files (mmd_pred_256bs.dat and nommd_pred_256bs.dat).
 
 2.）Reproducing Paper Figures
+
 Run the provided evaluation scripts to regenerate the diagnostic figures from the prediction data:
+
 Scatter & Residual Analysis:   
+
             python plot_scatter.py       # Generates: physical_parameters_evaluation.eps
 
 
 1D Distribution Profile Consistency:
+
             python plot_1D_kde.py        # Generates: kde_density_distribution_comparison.eps
 
 
 2D Astrophysical Manifold Reconstruction ($D_n 4000$ vs $\mathrm{H}\delta_A$):
+
             python plot_2D_kde.py        # Generates: 2D_KDE_overlay_Dn4000_vs_HdeltaA.eps
 
 5.	Pre-trained Checkpoints & Data
 
 The pre-trained network weights and dataset identifiers are archived and publicly accessible:
+
 Zenodo Archive: 10.5281/zenodo.xxxxxxxx
 
 6.	Contact & Citation
@@ -69,10 +77,17 @@ Zenodo Archive: 10.5281/zenodo.xxxxxxxx
 For queries regarding code or dataset cross-matching, please open an Issue or contact Zhijian Luo.
 
 If you find this repository useful for your research, please cite our paper and dataset:
+
 @article{Luo2026ViTMultiTask,
+
   author    = {Zhijian Luo & Jianzhen Chen},
+  
   title     = { Mitigating Variance Shrinkage in Multi-task Galaxy Property Inference from Imaging Data via Physical Manifold Constraints},
+  
   journal   = {xxxxxxxxxxxxxxxxxxxxxxxxx},
+  
   year      = {2026},
+  
   doi       = {10.5281/zenodo.xxxxxxxx}
+  
 }
