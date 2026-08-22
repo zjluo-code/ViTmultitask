@@ -42,13 +42,13 @@ pip install tensorflow numpy scipy matplotlib seaborn scikit-learn
 
 To train the ViTMultiTask network or run inference on the HSC test set:
 
-            python hsc_mmd_256bs.py  # main ViTMultiTask program
+            python hsc_mmd_256bs.py  # ViTMultiTask
 
-Pre-trained weights are automatically loaded from desi_hsc_mmd_256bs/ and desi_hsc_nommd_256bs/.
+- Pre-trained model weights are loaded from (or saved to) the `desi_hsc_mmd_256bs/` and `desi_hsc_nommd_256bs/` directories.
 
 The evaluation outputs prediction files (mmd_pred_256bs.dat and nommd_pred_256bs.dat).
 
-2.）Reproducing Paper Figures
+2）Reproducing Paper Figures
 
 Run the provided evaluation scripts to regenerate the diagnostic figures from the prediction data:
 
