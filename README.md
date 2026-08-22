@@ -6,7 +6,7 @@ Official implementation for the paper: " Mitigating Variance Shrinkage in Multi-
 
 1.	Overview
 
-ViTMultiTask is a deep learning framework designed to simultaneously estimate high-dimensional galaxy physical parameters—redshift ($z$), stellar mass ($\log M_*/\mathrm{M}_\odot$), $D_n 4000$, and $H\delta_A$ equivalent width—from $64 \times 64$ five-band Hyper Suprime-Cam (HSC) optical cutouts.By integrating a Vision Transformer (ViT) backbone with a Maximum Mean Discrepancy (MMD) regularization penalty, the network preserves intrinsic multi-parameter physical manifolds (e.g., the $D_n 4000$--$H\delta_A$ evolutionary sequence) and mitigates standard MSE-induced variance shrinkage.
+ViTMultiTask is a deep learning framework designed to simultaneously estimate high-dimensional galaxy physical parameters—redshift ($z$), stellar mass ($\log M_*/\mathrm{M}_\odot$), $D_n 4000$, and $H\delta_A$ equivalent width—from $64 \times 64$ five-band Hyper Suprime-Cam (HSC) optical cutouts.By integrating a Vision Transformer (ViT) backbone with a Maximum Mean Discrepancy (MMD) regularization penalty, the network preserves intrinsic multi-parameter physical manifolds (e.g., the $D_n 4000$-- $H\delta_A$ evolutionary sequence) and mitigates standard MSE-induced variance shrinkage.
 
 2.	Repository Structure
 
