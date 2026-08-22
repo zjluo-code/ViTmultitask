@@ -42,7 +42,7 @@ pip install tensorflow numpy scipy matplotlib seaborn scikit-learn
 
 To train the ViTMultiTask network or run inference on the HSC test set:
 
-python hsc_mmd_256bs.py
+            python hsc_mmd_256bs.py  # main ViTMultiTask program
 
 Pre-trained weights are automatically loaded from desi_hsc_mmd_256bs/ and desi_hsc_nommd_256bs/.
 
