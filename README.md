@@ -34,7 +34,7 @@ ViTMultiTask is a deep learning framework designed to simultaneously estimate hi
 
 Ensure you have Python 3.8+ and standard scientific/deep learning packages installed:
 
-pip install tensorflow numpy scipy matplotlib seaborn scikit-learn
+            pip install tensorflow numpy scipy matplotlib seaborn scikit-learn
 
 4.	Usage
 
@@ -70,7 +70,7 @@ Run the provided evaluation scripts to regenerate the diagnostic figures from th
 
 The pre-trained network weights and dataset identifiers are archived and publicly accessible:
 
-             Zenodo Archive: 10.5281/zenodo.xxxxxxxx
+              Zenodo Archive: 10.5281/zenodo.xxxxxxxx
 
 6.	Contact & Citation
 
