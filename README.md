@@ -52,17 +52,17 @@ The evaluation outputs prediction files (mmd_pred_256bs.dat and nommd_pred_256bs
 
 Run the provided evaluation scripts to regenerate the diagnostic figures from the prediction data:
 
-Scatter & Residual Analysis:   
+- Scatter & Residual Analysis:   
 
             python plot_scatter.py       # Generates: physical_parameters_evaluation.eps
 
 
-1D Distribution Profile Consistency:
+- 1D Distribution Profile Consistency:
 
             python plot_1D_kde.py        # Generates: kde_density_distribution_comparison.eps
 
 
-2D Astrophysical Manifold Reconstruction ($D_n 4000$ vs $\mathrm{H}\delta_A$):
+- 2D Astrophysical Manifold Reconstruction ($D_n 4000$ vs $\mathrm{H}\delta_A$):
 
             python plot_2D_kde.py        # Generates: 2D_KDE_overlay_Dn4000_vs_HdeltaA.eps
 
