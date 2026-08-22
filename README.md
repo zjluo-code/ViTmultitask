@@ -44,9 +44,10 @@ To train the ViTMultiTask network or run inference on the HSC test set:
 
             python hsc_mmd_256bs.py  # ViTMultiTask
 
+
 - Pre-trained model weights are loaded from (or saved to) the `desi_hsc_mmd_256bs/` and `desi_hsc_nommd_256bs/` directories.
 
-The evaluation outputs prediction files (mmd_pred_256bs.dat and nommd_pred_256bs.dat).
+- The evaluation outputs prediction files (mmd_pred_256bs.dat and nommd_pred_256bs.dat).
 
 2）Reproducing Paper Figures
 
