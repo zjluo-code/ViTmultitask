@@ -1,6 +1,6 @@
 # ViTmultitask
 
-ViTMultiTask: Mitigating Variance Shrinkage in Multi-task Galaxy Property Inference from Imaging Data via Physical Manifold Constraints
+ViTMultiTask: Joint Estimation of Galaxy Physical Parameters with Distribution Alignment
 
 Official implementation for the paper: " Mitigating Variance Shrinkage in Multi-task Galaxy Property Inference from Imaging Data via Physical Manifold Constraints".
 
