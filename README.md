@@ -2,7 +2,7 @@
 
 ViTMultiTask: Joint Estimation of Galaxy Physical Parameters with Distribution Alignment
 
-Official implementation for the paper: " Mitigating Variance Shrinkage in Multi-task Galaxy Property Inference from Imaging Data via Physical Manifold Constraints".
+Official implementation for the paper: " Mitigating Variance Shrinkage in Multi-task Galaxy Property Inference from Imaging Data via  statistical manifold alignment".
 
 1.	Overview
 
@@ -16,7 +16,9 @@ ViTMultiTask is a deep learning framework designed to simultaneously estimate hi
 
 ├── plot_1D_kde.py            # Plotting script: 1D KDE density distribution comparison
 
-├── plot_2D_kde.py            # Plotting script: 2D KDE contour overlays on the Dn4000-HdeltaA manifold
+├── plot_2D_kde.py            # Plotting script: 2D KDE contour overlays on the HdeltaA-Dn4000 manifold and Mass-Dn4000 bimodal distribution
+
+├── plot_mzdnhda.py           # Plotting script: Parameter distributions of the four target physical properties across the galaxy sample
 
 ├── mmd_pred_256bs.dat        # Model predictions on the test set (ViTMultiTask with MMD)
 
@@ -53,6 +55,10 @@ To train the ViTMultiTask network or run inference on the HSC test set:
 
 Run the provided evaluation scripts to regenerate the diagnostic figures from the prediction data:
 
+- Parameter distributions:   
+
+            python plot_mzdnhda.py       # Generates: figures_parameter_distributions.eps
+
 - Scatter & Residual Analysis:   
 
             python plot_scatter.py       # Generates: physical_parameters_evaluation.eps
@@ -83,7 +89,7 @@ If you find this repository useful for your research, please cite our paper and 
 
   author    = {Zhijian Luo & Jianzhen Chen},
   
-  title     = { Mitigating Variance Shrinkage in Multi-task Galaxy Property Inference from Imaging Data via Physical Manifold Constraints},
+  title     = { Mitigating Variance Shrinkage in Multi-task Galaxy Property Inference from Imaging Data via  statistical manifold alignment},
   
   journal   = {xxxxxxxxxxxxxxxxxxxxxxxxx},
   
