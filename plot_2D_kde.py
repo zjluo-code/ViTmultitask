@@ -7,7 +7,7 @@ from matplotlib.patches import Patch
 from matplotlib.colors import LinearSegmentedColormap
 
 # -----------------------------------------------------------------------------
-# 1. Set plot style
+# 1. Set publication-quality plotting style
 # -----------------------------------------------------------------------------
 plt.rcParams['font.sans-serif'] = ['DejaVu Sans', 'Arial']
 plt.rcParams['axes.unicode_minus'] = False
@@ -32,21 +32,21 @@ except Exception as e:
     print(f"Data reading failed, please check file path or format: {e}")
     exit()
 
-# Extract Dn4000 (index 0) and HdeltaA (index 3)
-x_true, y_true_hd = y_true[:, 0], y_true[:, 3]
-x_nommd, y_nommd = y_pred_no_mmd[:, 0], y_pred_no_mmd[:, 3]
-x_mmd, y_mmd = y_pred_mmd[:, 0], y_pred_mmd[:, 3]
+# Extract M (index 1) and Dn4000 (index 0)
+x_true, y_true_hd = y_true[:, 1], y_true[:, 0]
+x_nommd, y_nommd = y_pred_no_mmd[:, 1], y_pred_no_mmd[:, 0]
+x_mmd, y_mmd = y_pred_mmd[:, 1], y_pred_mmd[:, 0]
 
 # -----------------------------------------------------------------------------
-# 3. Create a light-grey colormap suitable for EPS/PDF vector graphics
+# 3. Create a light-grey colormap that does not "blacken" in EPS/PDF vector graphics
 # -----------------------------------------------------------------------------
-# Transition from pure white (#ffffff) to light grey (#b0b0b0)
+# Transition from pure white (#ffffff) to light grey (#b0b0b0); the deepest centre will not become black
 custom_light_greys = LinearSegmentedColormap.from_list(
     'light_greys', ['#ffffff', '#e0e0e0', '#cccccc', '#b0b0b0']
 )
 
 # Contour levels for prediction models (4 lines)
-pred_levels = [0.25, 0.5, 0.75, 0.9]
+pred_levels = [0.2, 0.4, 0.6, 0.8]
 pred_kde_kwargs = {
     'bw_adjust': 0.8,
     'levels': pred_levels,
@@ -54,7 +54,7 @@ pred_kde_kwargs = {
 }
 
 # Contour levels for Ground Truth shading
-gt_levels = [0.25, 0.5, 0.75, 0.9, 1.0]
+gt_levels = [0.2,0.4,0.6,0.8, 1.0]
 gt_kde_kwargs = {
     'bw_adjust': 0.8,
     'levels': gt_levels,
@@ -66,50 +66,50 @@ gt_kde_kwargs = {
 # -----------------------------------------------------------------------------
 fig, ax = plt.subplots(figsize=(6, 5), dpi=100)
 
-# 1. Ground Truth: using custom light-grey colormap
-# rasterized=True
-sns.kdeplot(x=x_true, y=y_true_hd, ax=ax, cmap=custom_light_greys,
+# 1. Ground Truth: using custom light-grey colormap, remove alpha to avoid blackening in EPS
+# rasterized=True rasterises the underlying fill to prevent rendering artifacts in vector viewers
+sns.kdeplot(x=x_true, y=y_true_hd, ax=ax, cmap=custom_light_greys, 
             fill=True, alpha=1.0, rasterized=True, **gt_kde_kwargs)
 
 # 2. Baseline Model (w/o MMD): blue dashed 4-level contours
-sns.kdeplot(x=x_nommd, y=y_nommd, ax=ax, color='#1f77b4',
+sns.kdeplot(x=x_nommd, y=y_nommd, ax=ax, color='#1f77b4', 
             fill=False, linewidths=1.8, linestyles='--', **pred_kde_kwargs)
 
 # 3. Proposed Model (w/ MMD): red solid 4-level contours
-sns.kdeplot(x=x_mmd, y=y_mmd, ax=ax, color='#d62728',
+sns.kdeplot(x=x_mmd, y=y_mmd, ax=ax, color='#d62728', 
             fill=False, linewidths=1.8, linestyles='-', **pred_kde_kwargs)
 
 # Set axis limits
-ax.set_xlim(left=0.9, right=2.1)
-ax.set_ylim(-4, 7)
+ax.set_xlim(left=8, right=12)
+ax.set_ylim(0.8, 2.2)
 
 # Axis tick and border settings
-ax.tick_params(direction='in', which='both', top=True, right=True,
+ax.tick_params(direction='in', which='both', top=True, right=True, 
                 width=1.2, length=5, labelsize=13)
 
 for spine in ax.spines.values():
     spine.set_linewidth(1.5)
 
 # Set axis labels and title
-ax.set_xlabel(r"$D_n4000$", fontsize=13)
-ax.set_ylabel(r"$\mathrm{H}\delta_A \ [\mathrm{\AA}]$", fontsize=13)
-fig.suptitle(r"2D Distribution: $D_n4000$ vs $\mathrm{H}\delta_A$", fontsize=13, y=0.96)
+ax.set_xlabel(r"$\log(M_*/\mathrm{M}_\odot)$", fontsize=13)
+ax.set_ylabel(r"$D_n4000$", fontsize=13)
+fig.suptitle(r"2D Distribution: $\log(M_*/\mathrm{M}_\odot)$ vs $D_n4000$", fontsize=13, y=0.96)
 
-# Custom legend handles (Patch color matches the core light grey)
+# Custom legend handles (Patch colour matches the core light grey)
 legend_elements = [
     Patch(facecolor='#cccccc', edgecolor='none', label='Ground Truth'),
     Line2D([0], [0], color='#1f77b4', lw=1.8, ls='--', label='w/o MMD'),
     Line2D([0], [0], color='#d62728', lw=1.8, ls='-', label='w/ MMD')
 ]
 
-ax.legend(handles=legend_elements, frameon=False, fontsize=13, loc='upper right', bbox_to_anchor=(0.98, 0.98))
+ax.legend(handles=legend_elements, frameon=False, fontsize=13, loc='upper right', bbox_to_anchor=(0.4, 0.98))
 
 # Adjust layout
 fig.subplots_adjust(top=0.92, bottom=0.12, left=0.12, right=0.96, hspace=0, wspace=0)
 
 # Export to EPS, PDF and PNG
-plt.savefig('2D_KDE_overlay_Dn4000_vs_HdeltaA.eps', format='eps', dpi=300, bbox_inches='tight', pad_inches=0.01)
-#plt.savefig('2D_KDE_overlay_Dn4000_vs_HdeltaA.pdf', format='pdf', dpi=300, bbox_inches='tight', pad_inches=0.01)
-plt.savefig('2D_KDE_overlay_Dn4000_vs_HdeltaA.png', dpi=300, bbox_inches='tight', pad_inches=0.01)
+plt.savefig('2D_KDE_overlay_M_vs_Dn4000.eps', format='eps', dpi=300, bbox_inches='tight', pad_inches=0.01)
+plt.savefig('2D_KDE_overlay_M_vs_Dn4000.pdf', format='pdf', dpi=300, bbox_inches='tight', pad_inches=0.01)
+plt.savefig('2D_KDE_overlay_M_vs_Dn4000.png', dpi=300, bbox_inches='tight', pad_inches=0.01)
 
 plt.show()
