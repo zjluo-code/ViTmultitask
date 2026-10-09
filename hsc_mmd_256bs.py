@@ -95,6 +95,15 @@ def load_datasets_split(base_path):
     X_test,  Y_test_phys,  test_ids  = read_h5_file(test_file)
     
     print(f"Train samples: {X_train.shape[0]}, Valid samples: {X_valid.shape[0]}, Test samples: {X_test.shape[0]}")
+    
+    # =========================================================================
+    # NOTE FOR REPRODUCIBILITY (Label Standardization & Metadata Serialization):
+    # To strictly prevent data leakage, target mean (y_mean) and standard deviation 
+    # (y_std) are computed EXCLUSIVELY from the training set.
+    # These normalization statistics are serialized and saved to metadata files
+    # ('phy_label_mean.npy' and 'phy_label_std.npy') to ensure identical Z-score
+    # standardization and inverse transforms during validation and test inference.
+    # =========================================================================
 
     # Compute training set mean and standard deviation
     y_mean = np.mean(Y_train_phys, axis=0)
