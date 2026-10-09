@@ -52,6 +52,13 @@ def read_h5_file(file_path):
         # 1. Load images [N, H, W, C]
         x_data = np.array(F['image'][:], dtype='f4')
         if x_data.ndim == 4 and x_data.shape[1] == 5:
+            # =========================================================================
+            # NOTE FOR REPRODUCIBILITY (Tensor Layout Adjustment):
+            # The original HSC image cutouts from GalaxiesML-Spectra are stored in 
+            # channel-first layout (N, C, H, W) = (N, 5, 64, 64).
+            # Here we transpose the array dimensions to channel-last layout (N, H, W, C)
+            # = (N, 64, 64, 5) to conform to standard TensorFlow/Keras conventions.
+            # =========================================================================
             x_data = np.transpose(x_data, (0, 2, 3, 1))
             
         # 2. Extract 4 multi-task labels
