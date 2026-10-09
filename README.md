@@ -11,6 +11,7 @@ ViTMultiTask is a deep learning framework designed to simultaneously estimate hi
 2.	Repository Structure
 
 ├── hsc_mmd_256bs.py          # Main script for ViTMultiTask model training and evaluation
+                              # (Includes annotated code for C x H x W -> H x W x C tensor transpositions & label normalization serialization)
 
 ├── plot_scatter.py           # Plotting script: physical parameter scatter & residual evaluation
 
@@ -73,13 +74,21 @@ Run the provided evaluation scripts to regenerate the diagnostic figures from th
 
             python plot_2D_kde.py        # Generates: 2D_KDE_overlay_Dn4000_vs_HdeltaA.eps
 
-5.	Pre-trained Checkpoints & Data
+5. Implementation & Preprocessing Details
+   
+For complete technical reproducibility, low-level data engineering routines are fully documented and annotated inside `hsc_mmd_256bs.py`:
+
+- Tensor formatting: Automatic transposition of HSC cutouts from channel-first (`C x H x W`) to channel-last (`H x W x C`) array layouts.
+  
+- Label Standardization: Computation of training-set target means and standard deviations ($\mu_k, \sigma_k$), metadata serialization, and inverse transforms for inference evaluation.
+
+6.	Pre-trained Checkpoints & Data
 
 The pre-trained network weights and dataset identifiers are archived and publicly accessible:
 
               Zenodo Archive: 10.5281/zenodo.xxxxxxxx
 
-6.	Contact & Citation
+7.	Contact & Citation
 
 For queries regarding code or dataset cross-matching, please open an Issue or contact Zhijian Luo.
 
